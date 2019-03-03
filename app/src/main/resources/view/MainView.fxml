@@ -13,6 +13,6 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 </rowConstraints>
    <children>
-      <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="아카시브 합치기" />
+      <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleOpenMergeTweetView" mnemonicParsing="false" text="아카시브 합치기" />
    </children>
 </GridPane>
