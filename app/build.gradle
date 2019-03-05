@@ -2,5 +2,6 @@ apply plugin: 'kotlin'
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     compile project(':leekSword')
 }
