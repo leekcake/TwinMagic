@@ -50,6 +50,7 @@ class MergeTweetViewController {
     fun handleAddArchiveButton() {
         val directory = directoryChooser.showDialog( addArchiveButton.scene.window ) ?: return
 
+        directoryChooser.initialDirectory = directory.parentFile
         archiveListViewItems.add(directory.path)
     }
 
