@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="rootView" prefWidth="320.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moe.leekcake.twinmagic.view.data.StatusViewController">
+    <children>
+        <HBox fx:id="headView" prefWidth="320.0">
+            <children>
+                <ImageView fx:id="headIconImageView" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                    <HBox.margin>
+                        <Insets bottom="6.0" left="5.0" top="5.0" />
+                    </HBox.margin>
+                    <image>
+                        <Image url="@/icon/ic_repeat_black_48dp.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="headTextLabel" prefWidth="280.0" text="&quot;Blue Electric AAAAAAAAAAAAAAAAAA&quot; was Retweeted" wrapText="true">
+                    <HBox.margin>
+                        <Insets bottom="6.0" left="5.0" top="5.0" />
+                    </HBox.margin>
+                </Label>
+            </children>
+        </HBox>
+        <AnchorPane maxWidth="1.7976931348623157E308" prefWidth="200.0">
+            <children>
+                <VBox prefWidth="320.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0">
+                    <children>
+                        <BorderPane prefHeight="20.0">
+                            <left>
+                                <Label fx:id="userLabel" prefHeight="16.0" prefWidth="250.0" text="Blue Electric @leekcake" BorderPane.alignment="CENTER" />
+                            </left>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                        </BorderPane>
+                        <Label fx:id="textLabel" prefWidth="230.0" text="gksrnrdjrk dksTjwudy b      I can't type korean :(" wrapText="true">
+                            <VBox.margin>
+                                <Insets top="4.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label fx:id="createdDateLabel" text="2016Y 1M 1D">
+                     <VBox.margin>
+                        <Insets top="4.0" />
+                     </VBox.margin></Label>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
