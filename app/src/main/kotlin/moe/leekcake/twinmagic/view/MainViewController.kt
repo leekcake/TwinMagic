@@ -16,4 +16,16 @@ class MainViewController {
 
         stage.show()
     }
+
+    fun handleOpenEraseByArchiveView() {
+        val stage = Stage()
+
+        val loader = FXMLLoader()
+        loader.location = MainViewController::class.java.getResource("/view/EraseByArchiveView.fxml")
+        val scene = Scene(loader.load())
+        stage.title = "아카시브 트청기"
+        stage.scene = scene
+
+        stage.show()
+    }
 }
