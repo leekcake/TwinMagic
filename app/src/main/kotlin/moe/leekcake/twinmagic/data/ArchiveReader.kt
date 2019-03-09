@@ -9,7 +9,11 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ArchiveReader() {
+class ArchiveReader {
+    interface ProgressReceiver {
+        fun onArchiveReaderProgress(progress: Double, status: String)
+    }
+
     val statuses = HashMap<Long, JSONObject>()
 
     var statuses_dates = ArrayList<String>()
@@ -93,15 +97,21 @@ class ArchiveReader() {
         fos.close()
     }
 
-    fun readFolder(directory: File) {
-        for (file in File(directory, "data/js/tweets").listFiles()!!) {
+    fun readFolder(directory: File, receiver: ProgressReceiver? = null) {
+        val files = File(directory, "data/js/tweets").listFiles()!!
+
+        for ( (i, file) in files.withIndex()) {
+            receiver?.onArchiveReaderProgress(i / (files.size * 0.9), "데이터 읽는중: ${file.name}")
             readJson(file)
         }
 
         statuses_dates.sortWith(Collections.reverseOrder())
-        for (ids in statues_datefilter.values) {
-            ids.sortWith(Collections.reverseOrder())
+        for ((i, ids) in statues_datefilter.entries.withIndex()) {
+            receiver?.onArchiveReaderProgress( 0.9 + (i / (statues_datefilter.size * 0.1)), "데이터 정렬중: ${ids.key}")
+            ids.value.sortWith(Collections.reverseOrder())
         }
+
+        receiver?.onArchiveReaderProgress(1.0, "완료")
     }
 
     private fun readJson(json: File) {

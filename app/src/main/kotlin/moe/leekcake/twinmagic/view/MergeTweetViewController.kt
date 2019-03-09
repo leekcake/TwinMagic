@@ -55,6 +55,10 @@ class MergeTweetViewController {
     }
 
     fun updateProgress(progress: Int, max: Int, text: String) {
+        updateProgress(progress.toDouble(), max.toDouble(), text)
+    }
+
+    fun updateProgress(progress: Double, max: Double, text: String) {
         Platform.runLater {
             progressBar.progress = progress / (max * 1.0)
             progressLabel.text = text
@@ -102,8 +106,13 @@ class MergeTweetViewController {
                     return@Thread
                 }
                 val file = File(path)
-                updateProgress(progress, maxProgress, "읽는중: ${file.name}")
-                archiveReader.readFolder( file )
+                val text = "읽는중: ${file.name}"
+                updateProgress(progress, maxProgress, text)
+                archiveReader.readFolder(file, object : ArchiveReader.ProgressReceiver {
+                    override fun onArchiveReaderProgress(p: Double, status: String) {
+                        updateProgress(progress + (p * 0.1), maxProgress.toDouble(), "$text - $status")
+                    }
+                })
                 progress++
             }
 
