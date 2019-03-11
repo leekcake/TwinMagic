@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moe.leekcake.twinmagic.view.EraseByArchiveViewController">
-   <VBox>
+   <VBox AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
       <children>
-         <Label  text="Label" />
+         <Label fx:id="statusLabel" text="트윗 0개중 0개가 삭제 대기중입니다" />
+         <BorderPane maxWidth="1.7976931348623157E308">
+            <center>
+               <TextField fx:id="searchTextField" BorderPane.alignment="CENTER" />
+            </center>
+            <right>
+               <Button fx:id="searchButton" mnemonicParsing="false" text="검색" BorderPane.alignment="CENTER" />
+            </right>
+         </BorderPane>
          <ListView fx:id="listView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" />
+         <ProgressBar fx:id="removeProgressBar" maxWidth="1.7976931348623157E308" progress="0.0" />
+         <Label fx:id="removeProgressLabel" text="대기" />
       </children>
    </VBox>
    <Label fx:id="progressLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Loading: " AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
