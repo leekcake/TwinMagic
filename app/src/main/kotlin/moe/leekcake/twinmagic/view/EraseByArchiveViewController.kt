@@ -38,7 +38,7 @@ class EraseByArchiveViewController {
             val items = ArrayList<JSONObject>(archiveReader.statuses.size)
             items.addAll( archiveReader.statuses.values )
 
-            items.sortWith(compareBy { it["id"] as Long })
+            items.sortWith(compareByDescending { it["id"] as Long })
 
             Platform.runLater {
                 listViewItems.addAll(items)
