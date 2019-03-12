@@ -6,6 +6,7 @@ import javafx.scene.control.Label
 import javafx.scene.image.ImageView
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
+import moe.leekcake.twinmagic.data.CheckableStatus
 import org.json.simple.JSONObject
 
 class StatusViewController {
@@ -38,9 +39,10 @@ class StatusViewController {
     @FXML
     lateinit var textLabel: Label
 
-    fun display(statusJson: JSONObject) {
+    fun display(status: CheckableStatus) {
         val display: JSONObject
 
+        val statusJson = status.json
         if(statusJson.containsKey("retweeted_status")) {
             display = statusJson["retweeted_status"] as JSONObject
             headView.isVisible = true

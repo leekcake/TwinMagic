@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,6 +12,11 @@
 
 <VBox fx:id="rootView" prefWidth="320.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moe.leekcake.twinmagic.view.data.StatusViewController">
     <children>
+      <CheckBox mnemonicParsing="false" text="삭제">
+         <VBox.margin>
+            <Insets left="4.0" top="4.0" />
+         </VBox.margin>
+      </CheckBox>
         <HBox fx:id="headView" prefWidth="320.0">
             <children>
                 <ImageView fx:id="headIconImageView" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">

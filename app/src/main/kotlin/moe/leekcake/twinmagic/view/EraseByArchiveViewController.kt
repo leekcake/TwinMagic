@@ -6,13 +6,16 @@ import javafx.fxml.FXML
 import javafx.scene.control.*
 import moe.leekcake.tweettail.desktop.view.data.status.StatusCell
 import moe.leekcake.twinmagic.data.ArchiveReader
+import moe.leekcake.twinmagic.data.CheckableStatus
 import org.json.simple.JSONObject
 import java.io.File
 
 class EraseByArchiveViewController {
     @FXML
-    lateinit var listView : ListView<JSONObject>
-    private val listViewItems = FXCollections.observableArrayList<JSONObject>()
+    lateinit var listView : ListView<CheckableStatus>
+
+    private val statuses = ArrayList<CheckableStatus>()
+    private val displayItems = FXCollections.observableArrayList<CheckableStatus>()
 
     @FXML
     lateinit var progressLabel : Label
@@ -33,7 +36,7 @@ class EraseByArchiveViewController {
     @FXML
     private fun initialize() {
         listView.cellFactory = StatusCell.newStatusCellFactory()
-        listView.items = listViewItems
+        listView.items = displayItems
     }
 
     fun setArchiveDirectory(directory: File) {
@@ -47,16 +50,17 @@ class EraseByArchiveViewController {
                 }
             })
 
-            val items = ArrayList<JSONObject>(archiveReader.statuses.size)
-            items.addAll( archiveReader.statuses.values )
-
-            items.sortWith(compareByDescending { it["id"] as Long })
+            statuses.ensureCapacity(archiveReader.statuses.size)
+            archiveReader.statuses.forEach { t, u ->
+                statuses.add( CheckableStatus(u) )
+            }
+            statuses.sortWith(compareByDescending { it.json["id"] as Long })
 
             Platform.runLater {
-                listViewItems.addAll(items)
+                displayItems.addAll(statuses)
                 progressLabel.isVisible = false
 
-                statusLabel.text = "트윗 ${items.size}개 중 ${items.size} 개가 삭제 대기중입니다"
+                statusLabel.text = "트윗 ${statuses.size}개 중 ${statuses.size} 개가 삭제 대기중입니다"
             }
         }
 
