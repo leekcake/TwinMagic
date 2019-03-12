@@ -46,10 +46,12 @@ class StatusViewController {
         if(statusJson.containsKey("retweeted_status")) {
             display = statusJson["retweeted_status"] as JSONObject
             headView.isVisible = true
+            headView.isManaged = true
 
             headTextLabel.text = (statusJson["user"] as JSONObject)["name"].toString() + " 님이 리트윗 했습니다"
         } else {
             headView.isVisible = false
+            headView.isManaged = false
             display = statusJson
         }
 
