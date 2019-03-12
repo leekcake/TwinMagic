@@ -12,7 +12,7 @@
 
 <VBox fx:id="rootView" prefWidth="320.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moe.leekcake.twinmagic.view.data.StatusViewController">
     <children>
-      <CheckBox mnemonicParsing="false" text="삭제">
+      <CheckBox fx:id="deleteCheckBox" mnemonicParsing="false" text="삭제">
          <VBox.margin>
             <Insets left="4.0" top="4.0" />
          </VBox.margin>

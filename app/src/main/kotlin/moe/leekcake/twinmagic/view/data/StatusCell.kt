@@ -9,12 +9,11 @@ import moe.leekcake.twinmagic.view.data.StatusViewController
 import org.json.simple.JSONObject
 
 class StatusCell : ListCell<CheckableStatus>() {
-    private var wsvc: WeakReference<StatusViewController> = WeakReference(StatusViewController.newStatusView())
+    private var svc: StatusViewController = StatusViewController.newStatusView()
 
     override fun updateItem(item: CheckableStatus?, empty: Boolean) {
         super.updateItem(item, empty)
         if ( !isEmpty ) {
-            val svc = wsvc.get()!!
             svc.display(item!!)
             graphic = svc.rootView
         } else {

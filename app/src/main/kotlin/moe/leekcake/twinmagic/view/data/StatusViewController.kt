@@ -2,6 +2,7 @@ package moe.leekcake.twinmagic.view.data
 
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
+import javafx.scene.control.CheckBox
 import javafx.scene.control.Label
 import javafx.scene.image.ImageView
 import javafx.scene.layout.HBox
@@ -23,6 +24,9 @@ class StatusViewController {
     lateinit var rootView: VBox
 
     @FXML
+    lateinit var deleteCheckBox: CheckBox
+
+    @FXML
     lateinit var headView: HBox
 
     @FXML
@@ -41,6 +45,8 @@ class StatusViewController {
 
     fun display(status: CheckableStatus) {
         val display: JSONObject
+
+        deleteCheckBox.isSelected = status.check
 
         val statusJson = status.json
         if(statusJson.containsKey("retweeted_status")) {
