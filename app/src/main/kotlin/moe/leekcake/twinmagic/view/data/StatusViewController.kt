@@ -20,6 +20,8 @@ class StatusViewController {
         }
     }
 
+    var listener : StatusCell.StatusChangeListener? = null
+
     @FXML
     lateinit var rootView: VBox
 
@@ -43,7 +45,25 @@ class StatusViewController {
     @FXML
     lateinit var textLabel: Label
 
+    lateinit var element : CheckableStatus
+
+    @FXML
+    fun initialize() {
+        deleteCheckBox.selectedProperty().addListener {
+            _, oldValue, newValue ->
+
+            if(oldValue == newValue) return@addListener
+
+            if(newValue) {
+                listener?.onCheckedStatusAdd(element)
+            } else {
+                listener?.onCheckedStatusRemove(element)
+            }
+        }
+    }
+
     fun display(status: CheckableStatus) {
+        element = status
         val display: JSONObject
 
         deleteCheckBox.isSelected = status.check

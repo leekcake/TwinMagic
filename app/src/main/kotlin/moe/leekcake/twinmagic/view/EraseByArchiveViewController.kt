@@ -10,12 +10,24 @@ import moe.leekcake.twinmagic.view.data.StatusCell
 import org.json.simple.JSONObject
 import java.io.File
 
-class EraseByArchiveViewController {
+class EraseByArchiveViewController : StatusCell.StatusChangeListener {
+    override fun onCheckedStatusRemove(status: CheckableStatus) {
+        removeTarget.remove(status.id)
+        updateDeleteStatus()
+    }
+
+    override fun onCheckedStatusAdd(status: CheckableStatus) {
+        removeTarget[status.id] = status
+        updateDeleteStatus()
+    }
+
     @FXML
     lateinit var listView : ListView<CheckableStatus>
 
     private val statuses = ArrayList<CheckableStatus>()
     private val displayItems = FXCollections.observableArrayList<CheckableStatus>()
+
+    private val removeTarget = HashMap<Long, CheckableStatus>()
 
     @FXML
     lateinit var progressLabel : Label
@@ -33,9 +45,15 @@ class EraseByArchiveViewController {
     @FXML
     lateinit var removeProgressLabel : Label
 
+    fun updateDeleteStatus() {
+        Platform.runLater {
+            statusLabel.text = "트윗 ${statuses.size}개 중 ${removeTarget.size} 개가 삭제 대기중입니다"
+        }
+    }
+
     @FXML
     private fun initialize() {
-        listView.cellFactory = StatusCell.newStatusCellFactory()
+        listView.cellFactory = StatusCell.newStatusCellFactory(this)
         listView.items = displayItems
     }
 
@@ -52,9 +70,11 @@ class EraseByArchiveViewController {
 
             statuses.ensureCapacity(archiveReader.statuses.size)
             archiveReader.statuses.forEach { t, u ->
-                statuses.add( CheckableStatus(u) )
+                val status = CheckableStatus(u)
+                statuses.add( status )
+                removeTarget[status.id] = status
             }
-            statuses.sortWith(compareByDescending { it.json["id"] as Long })
+            statuses.sortWith(compareByDescending { it.id })
 
             Platform.runLater {
                 displayItems.addAll(statuses)
