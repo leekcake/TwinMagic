@@ -23,9 +23,7 @@ class StatusCell : ListCell<CheckableStatus>() {
 
     companion object {
         fun newStatusCellFactory(): Callback<ListView<CheckableStatus>, ListCell<CheckableStatus>> {
-            return Callback<ListView<CheckableStatus>, ListCell<CheckableStatus>> { StatusCell() }
+            return Callback { StatusCell() }
         }
     }
-
-
 }
