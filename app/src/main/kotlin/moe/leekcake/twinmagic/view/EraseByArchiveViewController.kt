@@ -4,9 +4,9 @@ import javafx.application.Platform
 import javafx.collections.FXCollections
 import javafx.fxml.FXML
 import javafx.scene.control.*
-import moe.leekcake.tweettail.desktop.view.data.status.StatusCell
 import moe.leekcake.twinmagic.data.ArchiveReader
 import moe.leekcake.twinmagic.data.CheckableStatus
+import moe.leekcake.twinmagic.view.data.StatusCell
 import org.json.simple.JSONObject
 import java.io.File
 

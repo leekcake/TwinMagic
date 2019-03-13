@@ -1,4 +1,4 @@
-package moe.leekcake.tweettail.desktop.view.data.status
+package moe.leekcake.twinmagic.view.data
 
 import java.lang.ref.WeakReference
 import javafx.scene.control.ListCell
