@@ -13,12 +13,13 @@
    <VBox AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
       <children>
          <Label fx:id="statusLabel" text="트윗 0개중 0개가 삭제 대기중입니다" />
+         <Label fx:id="filterStatusLabel" text="트윗 0개중 0개를 표시하고 있습니다" />
          <BorderPane maxWidth="1.7976931348623157E308">
             <center>
                <TextField fx:id="searchTextField" BorderPane.alignment="CENTER" />
             </center>
             <right>
-               <Button fx:id="searchButton" mnemonicParsing="false" text="검색" BorderPane.alignment="CENTER" />
+               <Button fx:id="searchButton" onAction="#handleSearchButton" mnemonicParsing="false" text="검색" BorderPane.alignment="CENTER" />
             </right>
          </BorderPane>
          <ListView fx:id="listView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" />

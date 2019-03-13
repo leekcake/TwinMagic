@@ -33,6 +33,8 @@ class EraseByArchiveViewController : StatusCell.StatusChangeListener {
     lateinit var progressLabel : Label
     @FXML
     lateinit var statusLabel : Label
+    @FXML
+    lateinit var filterStatusLabel : Label
 
     @FXML
     lateinit var searchTextField : TextField
@@ -45,7 +47,17 @@ class EraseByArchiveViewController : StatusCell.StatusChangeListener {
     @FXML
     lateinit var removeProgressLabel : Label
 
-    fun updateDeleteStatus() {
+    fun handleSearchButton() {
+        displayItems.clear()
+        if( searchTextField.text == "" ) {
+            displayItems.addAll( statuses )
+        } else {
+            displayItems.addAll( statuses.filter { (it.json["text"] as String).contains(searchTextField.text) } )
+        }
+        filterStatusLabel.text = "트윗 ${statuses.size}개중 ${displayItems.size}개를 표시하고 있습니다"
+    }
+
+    private fun updateDeleteStatus() {
         Platform.runLater {
             statusLabel.text = "트윗 ${statuses.size}개 중 ${removeTarget.size} 개가 삭제 대기중입니다"
         }
@@ -80,7 +92,8 @@ class EraseByArchiveViewController : StatusCell.StatusChangeListener {
                 displayItems.addAll(statuses)
                 progressLabel.isVisible = false
 
-                statusLabel.text = "트윗 ${statuses.size}개 중 ${statuses.size} 개가 삭제 대기중입니다"
+                statusLabel.text = "트윗 ${statuses.size}개중 ${removeTarget.size}개가 삭제 대기중입니다"
+                filterStatusLabel.text = "트윗 ${statuses.size}개중 ${displayItems.size}개를 표시하고 있습니다"
             }
         }
 
